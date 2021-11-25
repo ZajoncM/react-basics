@@ -1,46 +1,27 @@
-import { useState, useEffect, useRef } from "react";
-import ClassComponent from "./ClassComponent/ClassComponent";
-import FunctionalComponent from "./FunctionalComponent/FunctionalComponent";
+import { useState, createContext } from "react";
+import ExampleCard from "./ExampleCard/ExampleCard";
+import MiniForm from "./MiniForm/MiniForm";
+import ReactUseComponent from "./ReactUseComponent/ReactUseComponent";
+
+export const ExampleContext = createContext();
 
 function App() {
-  const [isClass, setIsClass] = useState(false);
-  const [time, setTime] = useState(0);
-  let intervalId = useRef(null);
+  const [title, setTitle] = useState("Example Title");
 
-  const handleClick = () => {
-    setIsClass((prev) => !prev);
+  const handleChange = (e) => {
+    setTitle(e.target.value);
   };
-
-  const consoleInterval = (val) => {
-    console.log(`Root: ${val}`);
-  };
-
-  useEffect(() => {
-    const myInterval = setInterval(() => {
-      setTime((prev) => ++prev);
-    }, 1000);
-
-    intervalId.current = myInterval;
-
-    return () => {
-      clearInterval(intervalId.current);
-    };
-  }, []);
-
-  useEffect(() => {
-    consoleInterval(time);
-  }, [time]);
 
   return (
-    <div className="App">
-      {isClass ? (
-        <ClassComponent rootTime={time} />
-      ) : (
-        <FunctionalComponent rootTime={time} />
-      )}
-
-      <button onClick={handleClick}>switch Component</button>
-    </div>
+    <ExampleContext.Provider value={{ title }}>
+      <MiniForm />
+      <h2>Context Example</h2>
+      <h3>Root Title: {title}</h3>
+      <ExampleCard />
+      <input type="text" value={title} onChange={(e) => handleChange(e)} />
+      <h2>React-use Example</h2>
+      <ReactUseComponent />
+    </ExampleContext.Provider>
   );
 }
 
