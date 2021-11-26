@@ -30,11 +30,11 @@ export const deleteUser = (payload) => {
 export const userReducer = (state = [], { type, payload }) => {
   switch (type) {
     case ADD_USER:
-      return { ...state, payload };
+      return [...state, payload];
     case EDIT_USER:
       return state.map((user) => (user.id === payload.id ? payload : user));
     case DELETE_USER:
-      return state.filter((user) => user.id !== payload.id);
+      return state.filter((user) => user.id !== payload);
     default:
       return state;
   }
