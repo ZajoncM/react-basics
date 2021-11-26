@@ -1,7 +1,13 @@
-import { BrowserRouter as Router } from "react-router-dom";
+import store from "../store";
+import { Provider } from "react-redux";
+import Counter from "./Counter/Counter";
 
 function App() {
-  return <Router>test</Router>;
+  return (
+    <Provider store={store}>
+      <Counter />
+    </Provider>
+  );
 }
 
 export default App;
