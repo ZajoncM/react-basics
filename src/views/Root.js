@@ -8,7 +8,10 @@ function App() {
       <Nav />
 
       <Routes>
-        <Route path="/form" element={<LoginForm />} />
+        <Route
+          path="/form"
+          element={<LoginForm submit={() => console.log("submit")} />}
+        />
       </Routes>
     </Router>
   );
