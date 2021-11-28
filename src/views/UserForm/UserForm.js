@@ -8,8 +8,8 @@ const UserForm = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { userId } = useParams();
-  const userData = useSelector((state) =>
-    state.find((user) => user.id === userId)
+  const userData = useSelector(({ users }) =>
+    users.users.find((user) => user.id === userId)
   );
 
   const formik = useFormik({

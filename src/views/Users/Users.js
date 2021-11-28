@@ -1,9 +1,12 @@
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { deleteUser } from "../../reducers/userReducer";
+import { deleteUser, searchUser } from "../../reducers/userReducer";
 import { useNavigate } from "react-router-dom";
+import { filteredUsersSelector } from "../../selectors";
+
 const Users = () => {
-  const users = useSelector((state) => state);
+  const users = useSelector(filteredUsersSelector);
+  const search = useSelector(({ users }) => users.search);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -13,6 +16,10 @@ const Users = () => {
 
   const handleEdit = (id) => {
     navigate(`/form/${id}`);
+  };
+
+  const handleSearch = (value) => {
+    dispatch(searchUser(value));
   };
 
   return (
@@ -30,6 +37,15 @@ const Users = () => {
       ) : (
         "Add user"
       )}
+      <br />
+
+      <input
+        type="text"
+        name="search"
+        placeholder="Search"
+        value={search}
+        onChange={(e) => handleSearch(e.target.value)}
+      />
       <br />
       <Link to="/form">Add user</Link>
     </div>
