@@ -1,39 +1,10 @@
-const userTypes = {
-  DELETE_USER: "DELETE_USER",
-  EDIT_USER: "EDIT_USER",
-  ADD_USER: "ADD_USER",
-  SEARCH_USER: "SEARCH_USER",
-};
-
-const { DELETE_USER, EDIT_USER, ADD_USER, SEARCH_USER } = userTypes;
-
-export const addUser = (payload) => {
-  return {
-    type: ADD_USER,
-    payload,
-  };
-};
-
-export const editUser = (payload) => {
-  return {
-    type: EDIT_USER,
-    payload,
-  };
-};
-
-export const deleteUser = (payload) => {
-  return {
-    type: DELETE_USER,
-    payload,
-  };
-};
-
-export const searchUser = (payload) => {
-  return {
-    type: SEARCH_USER,
-    payload,
-  };
-};
+import {
+  ADD_USER,
+  DELETE_USER,
+  EDIT_USER,
+  FETCH_USER_SUCCESS,
+  SEARCH_USER,
+} from "../constants/userConstants";
 
 const initialState = {
   users: [],
@@ -61,6 +32,8 @@ export const userReducer = (state = initialState, { type, payload }) => {
         ...state,
         search: payload,
       };
+    case FETCH_USER_SUCCESS:
+      return { ...state, users: payload };
     default:
       return state;
   }

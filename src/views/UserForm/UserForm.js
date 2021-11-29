@@ -1,7 +1,7 @@
 import { useFormik } from "formik";
 import { useDispatch, useSelector } from "react-redux";
 import { v4 } from "uuid";
-import { addUser, editUser } from "../../reducers/userReducer";
+import { addUser, editUser } from "../../actions/userActions";
 import { useNavigate, useParams } from "react-router";
 
 const UserForm = () => {

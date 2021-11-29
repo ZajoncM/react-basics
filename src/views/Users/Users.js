@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { deleteUser, searchUser } from "../../reducers/userReducer";
+import { deleteUser, searchUser } from "../../actions/userActions";
 import { useNavigate } from "react-router-dom";
-import { filteredUsersSelector } from "../../selectors";
+import { filteredUsersSelector } from "../../selectors/selectors";
 
 const Users = () => {
   const users = useSelector(filteredUsersSelector);
