@@ -1,25 +1,18 @@
 import { render, screen } from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
-import Root from "../Root";
+import { BrowserRouter } from "react-router-dom";
+import Users from "./Users";
+
+const MockUsers = () => {
+  return (
+    <BrowserRouter>
+      <Users />
+    </BrowserRouter>
+  );
+};
 
 it("should render a list of users", () => {
-  render(<Root />);
-  const usersLink = screen.getByText(/Users/i);
-
-  userEvent.click(usersLink);
+  render(<MockUsers />);
   const exampleUser = screen.getByText(/Edward/i);
 
   expect(exampleUser).toBeInTheDocument();
-});
-
-it("should render a user data after redirect", () => {
-  render(<Root />);
-  const usersLink = screen.getByText(/Users/i);
-
-  userEvent.click(usersLink);
-  const exampleUserLink = screen.getByText(/Show/i);
-
-  userEvent.click(exampleUserLink);
-
-  expect(/User:/i).toBeInTheDocument();
 });

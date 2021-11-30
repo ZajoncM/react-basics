@@ -1,8 +1,14 @@
-import { render, screen } from "@testing-library/react";
+import { render, screen, fireEvent } from "@testing-library/react";
 import Root from "./Root";
 
-test("renders learn react link", () => {
+it("should render a user data after redirect", () => {
   render(<Root />);
-  // const linkElement = screen.getByText(/learn react/i);
-  // expect(linkElement).toBeInTheDocument();
+  const usersLink = screen.getByText(/Users/i);
+
+  fireEvent.click(usersLink);
+  const exampleUserLink = screen.getByText(/Show Edward/i);
+
+  fireEvent.click(exampleUserLink);
+
+  expect(/User:/i).toBeInTheDocument();
 });
