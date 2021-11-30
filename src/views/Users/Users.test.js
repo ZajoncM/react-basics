@@ -12,7 +12,7 @@ const MockUsers = () => {
 
 it("should render a list of users", () => {
   render(<MockUsers />);
-  const exampleUser = screen.getByText(/Edward/i);
+  const exampleUser = screen.getByText(/Show Edward/i);
 
   expect(exampleUser).toBeInTheDocument();
 });

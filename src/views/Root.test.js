@@ -6,9 +6,9 @@ it("should render a user data after redirect", () => {
   const usersLink = screen.getByText(/Users/i);
 
   fireEvent.click(usersLink);
+
   const exampleUserLink = screen.getByText(/Show Edward/i);
 
   fireEvent.click(exampleUserLink);
-
-  expect(/User:/i).toBeInTheDocument();
+  expect(screen.getByText(/User: 4/i)).toBeInTheDocument();
 });
