@@ -1,5 +1,9 @@
+import { useParams } from "react-router";
+
 const User = () => {
-  return "user";
+  const { userId } = useParams();
+
+  return <p>User: {userId}</p>;
 };
 
 export default User;
