@@ -3,11 +3,9 @@ import { rootReducer } from "../reducers/rootReducer";
 import { composeWithDevTools } from "redux-devtools-extension";
 import reduxThunk from "redux-thunk";
 
-const middleware = [reduxThunk];
-
 const store = createStore(
   rootReducer,
-  composeWithDevTools(applyMiddleware(...middleware))
+  composeWithDevTools(applyMiddleware(reduxThunk))
 );
 
 export default store;
