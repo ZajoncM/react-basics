@@ -47,6 +47,7 @@ const Wizard = () => {
     },
     enableReinitialize: true,
     validateOnChange: true,
+    validateOnMount: true,
   });
 
   const handleStep = (value) => {
